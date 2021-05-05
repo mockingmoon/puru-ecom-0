@@ -1,0 +1,8 @@
+{
+  "development": {
+    "HOST_NAME": "localhost"
+  },
+  "test": {},
+  "prod": {},
+  "production": {}
+}

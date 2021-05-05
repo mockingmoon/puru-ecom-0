@@ -1,0 +1,5 @@
+# E-COMMERCE BACKEND USING EXPRESS.JS
+
+`npm i`
+
+`npm start`

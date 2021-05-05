@@ -1,0 +1,19 @@
+{
+  "name": "my-ecom",
+  "version": "0.0.0",
+  "author": "Purujit Srinivasan",
+  "license": "ISC",
+  "scripts": {
+    "start": "node ./server/setup"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
+  },
+  "engines": {
+    "node": "12.18.4",
+    "npm": "6.14.6"
+  }
+}
