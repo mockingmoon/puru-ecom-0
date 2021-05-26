@@ -1,13 +1,25 @@
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
+'use strict';
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const helmet = require('helmet');
 
-let indexRouter = require('../routes/index');
-let usersRouter = require('../routes/users');
+const indexRouter = require('../routes/index');
+const usersRouter = require('../routes/users');
 
-let app = express();
+const app = express();
 
+// CORS
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
+
+// app.options('*', (req, res) => res.sendStatus(200));
+
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

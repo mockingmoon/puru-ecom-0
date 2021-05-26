@@ -1,41 +1,47 @@
 #!/usr/bin/env node
-
+'use strict';
 /**
  * Set config vars
  */
 
-let config = require('./config.json');
+const config = require('./config.json');
 console.log(config);
-let my_env = process.env.NODE_ENV || "development";
-let env_config = config[my_env];
+const my_env = process.env.NODE_ENV || "development";
+const env_config = config[my_env];
 if (env_config) {
-  for (let objKey of Object.keys(env_config)) {
+  for (const objKey of Object.keys(env_config)) {
     process.env[objKey] = env_config[objKey];
     console.log(env_config[objKey]);
   }
 }
 
 /**
+ * Initiate mongoose - mongoDB
+ */
+
+require('./db');
+
+/**
  * Module dependencies.
  */
 
-let app = require('./app');
-let debug = require('debug')('my-ecom:server');
-let http = require('http');
+const app = require('./app');
+const debug = require('debug')('my-ecom:server');
+const http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-let hostname = process.env.HOST_NAME;
-let port = normalizePort(process.env.PORT || '8000');
+const hostname = process.env.HOST_NAME;
+const port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-let server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -52,7 +58,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  let port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -76,7 +82,7 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -100,9 +106,31 @@ function onError(error) {
  */
 
 function onListening() {
-  let addr = server.address();
-  let bind = typeof addr === 'string'
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+/**
+ * Terminate command
+ */
+
+const chunk = [];
+process.stdin.on('data', (data) => {
+  chunk.push(data.toString());
+  console.log(chunk.toString());
+  if (chunk.length>5) {
+    chunk.splice(0, 3);
+  }
+  if (chunk.toString().toLowerCase().indexOf("zz")!==(-1)) {
+    console.log("Server shutdown initiated. Please wait for complete shutdown.");
+    // server.removeAllListeners("connection");
+    // console.log("Removed all connection listeners.");
+    server.close((err) => {
+      if (err) console.error(err);
+      else console.log("Server shutdown complete.");
+    })
+  }
+});
