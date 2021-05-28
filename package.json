@@ -1,17 +1,17 @@
 {
-  "name": "my-ecom",
+  "name": "puru-ecom-0",
   "version": "0.0.0",
   "author": "Purujit Srinivasan",
   "license": "ISC",
   "scripts": {
-    "start": "nodemon ./server/setup",
-    "server": "node ./server/setup"
+    "start": "node ./server/setup"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "helmet": "^4.6.0",
+    "mongoose": "^5.12.11",
     "morgan": "~1.9.1"
   },
   "devDependencies": {

@@ -5,13 +5,13 @@
  */
 
 const config = require('./config.json');
-console.log(config);
+// console.log(config);
 const my_env = process.env.NODE_ENV || "development";
 const env_config = config[my_env];
 if (env_config) {
   for (const objKey of Object.keys(env_config)) {
     process.env[objKey] = env_config[objKey];
-    console.log(env_config[objKey]);
+    // console.log(env_config[objKey]);
   }
 }
 
@@ -48,7 +48,7 @@ const server = http.createServer(app);
  */
 
 server.listen(port, ()=>{
-  console.log(`Server listening to http://${hostname}:${port}/`);
+  console.log(`Server listening @ http://${hostname}:${port}/`);
 });
 server.on('error', onError);
 server.on('listening', onListening);

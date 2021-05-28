@@ -1,8 +1,15 @@
 {
   "development": {
+    "MONGODB_URI": "mongodb://localhost:27017/ecom0db",
     "HOST_NAME": "localhost"
   },
-  "test": {},
-  "prod": {},
-  "production": {}
+  "test": {
+    "MONGODB_URI": "mongodb://localhost:27017/ecom0db"
+  },
+  "prod": {
+    "MONGODB_URI": "mongodb://localhost:27017/ecom0db"
+  },
+  "production": {
+    "MONGODB_URI": "mongodb://localhost:27017/ecom0db"
+  }
 }
