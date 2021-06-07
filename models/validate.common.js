@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Function to validate common user fields and return validated fields (or null if invalid)
+ * @param {object} validateObj - JSON containing - fName, lName, email, phone, pCode, photo
+ * @returns - Cleaned data OR null if invalid
+ */
 function validateUserProfile(validateObj) {
   try {
     let errorMsg=""; //extend error messages
